@@ -8,12 +8,12 @@ import java.util.List;
 
 public class UserService {
 
-    public static UserService instance = new UserService();
+    public static UserService INSTANCE = new UserService();
 
     private UserDao userDao;
 
     private UserService() {
-        userDao = UserDaoFactory.instance.getUserDao();
+        userDao = UserDaoFactory.INSTANCE.getUserDao();
     }
 
 
@@ -52,5 +52,11 @@ public class UserService {
                 !name.isEmpty() &&
                 !pass.isEmpty() ?
                 userDao.getUser(name, pass) : new User("","",1L,"");
+    }
+
+    public void createDefaultAdmin(){
+        if (userDao.getUser(1L) == null) {
+            UserService.INSTANCE.addUser("Dima", "12345", 24L, "admin");
+        }
     }
 }

@@ -16,7 +16,7 @@ public class AdminUpOrDelUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         boolean result = false;
         try {
-            result = UserService.instance.updateUser(
+            result = UserService.INSTANCE.updateUser(
                     Long.parseLong(req.getParameter("id")),
                     req.getParameter("name"),
                     req.getParameter("pass"),
@@ -36,7 +36,7 @@ public class AdminUpOrDelUserServlet extends HttpServlet {
         boolean result = false;
 
         try {
-            result = UserService.instance.delUser(Long.parseLong(req.getParameter("id")));
+            result = UserService.INSTANCE.delUser(Long.parseLong(req.getParameter("id")));
         } catch (NumberFormatException ignored) {
 
         }

@@ -84,4 +84,9 @@ public class UserJDBCDao implements UserDao {
     public User getUser(String name, String pass) {
         return null;
     }
+
+    @Override
+    public User getUser(Long id) {
+        return null;
+    }
 }

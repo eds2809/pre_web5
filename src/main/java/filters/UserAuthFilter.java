@@ -8,7 +8,7 @@ import java.io.IOException;
 
 
 @WebFilter("/home/user/")
-public class AuthUserHomeFilter implements Filter {
+public class UserAuthFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

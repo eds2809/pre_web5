@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public class UserDaoFactory {
 
-    public static UserDaoFactory instance = new UserDaoFactory();
+    public static UserDaoFactory INSTANCE = new UserDaoFactory();
     private Properties properties = new Properties();
 
     private UserDaoFactory() {

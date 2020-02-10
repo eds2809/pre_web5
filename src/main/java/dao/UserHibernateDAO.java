@@ -81,4 +81,12 @@ public class UserHibernateDAO implements UserDao {
         session.close();
         return user;
     }
+
+    @Override
+    public User getUser(Long id) {
+        Session session = getSession();
+        User user = session.get(User.class,id);
+        session.close();
+        return user;
+    }
 }
