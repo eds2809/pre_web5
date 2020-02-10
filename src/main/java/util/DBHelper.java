@@ -40,7 +40,7 @@ public class DBHelper {
         //То что добавлял я
         configuration.setProperty("hibernate.connection.useUnicode", prop.getProperty("useUnicode"));
 
-        configuration.setProperty("hibernate.connection.url", prop.getProperty("DB.URL"));
+        configuration.setProperty("hibernate.connection.url", prop.getProperty("HIBERNATE.DB.URL"));
 
 
         return configuration;
@@ -59,7 +59,7 @@ public class DBHelper {
             DriverManager.registerDriver((Driver) Class.forName("com.mysql.jdbc.Driver").newInstance());
 
             return DriverManager.getConnection(
-                    PropertyReader.getProperties("config.properties").getProperty("DB.URL")
+                    PropertyReader.getProperties("config.properties").getProperty("JDBC.DB.URL")
             );
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
