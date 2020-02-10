@@ -50,35 +50,34 @@
             <td>age</td>
             <td>role</td>
         </tr>
+
+        <jsp:useBean id="users" scope="request" type="java.util.List"/>
         <c:forEach items="${users}" var="user">
 
                 <tr>
-                    <form method="get" action="${pageContext.request.contextPath}/admin/user" style="margin: 0;">
                     <td>
-                        <input type="text" name="id" value="${user.id}" hidden>
                             ${user.id}
                     </td>
                     <td>
-                        <input type="text" name="name" value="${user.name}">
+                            ${user.name}
                     </td>
 
                     <td>
-                        <input type="text" name="pass" value="${user.pass}">
+                            ${user.pass}
                     </td>
 
                     <td>
-                        <input type="number" name="age" value="${user.age}">
+                            ${user.age}
                     </td>
 
                     <td>
-                        <select name="role" autofocus>
-                            <option value="user" ${user.role == 'user' ? 'selected' : ''}>user</option>
-                            <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>admin</option>
-                        </select>
+                            ${user.role}
                     </td>
 
                     <td>
-                        <button type="submit">update</button>
+                        <form>
+                            <input type="button" value="update" onClick='location.href="${pageContext.request.contextPath}/admin/update/"+${user.id}'>
+                        </form>
                     </td>
 
                     </form>

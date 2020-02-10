@@ -11,6 +11,7 @@ import org.hibernate.service.ServiceRegistry;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DBHelper {
 
@@ -27,18 +28,19 @@ public class DBHelper {
     private static Configuration getMySqlConfiguration() {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(User.class);
+        Properties prop = PropertyReader.getProperties("config.properties");
 
-        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MariaDB103Dialect");
-        configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-        configuration.setProperty("hibernate.connection.username", "root");
-        configuration.setProperty("hibernate.connection.password", "Bcv8wsr");
-        configuration.setProperty("hibernate.show_sql", "false");
-        configuration.setProperty("hibernate.hbm2ddl.auto", "create");
+        configuration.setProperty("hibernate.dialect", prop.getProperty("dialect"));
+        configuration.setProperty("hibernate.connection.driver_class", prop.getProperty("driver_class"));
+        configuration.setProperty("hibernate.connection.username", prop.getProperty("DB.USERNAME"));
+        configuration.setProperty("hibernate.connection.password", prop.getProperty("DB.PASS"));
+        configuration.setProperty("hibernate.show_sql", prop.getProperty("hibernate.show_sql"));
+        configuration.setProperty("hibernate.hbm2ddl.auto", prop.getProperty("hibernate.hbm2ddl.auto"));
 
         //То что добавлял я
-        configuration.setProperty("hibernate.connection.useUnicode", "true");
+        configuration.setProperty("hibernate.connection.useUnicode", prop.getProperty("useUnicode"));
 
-        configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/users?autoReconnect=true");
+        configuration.setProperty("hibernate.connection.url", prop.getProperty("DB.URL"));
 
 
         return configuration;
@@ -56,19 +58,9 @@ public class DBHelper {
         try {
             DriverManager.registerDriver((Driver) Class.forName("com.mysql.jdbc.Driver").newInstance());
 
-            StringBuilder url = new StringBuilder();
-
-            url.
-                    append("jdbc:mysql://").        //db type
-                    append("localhost:").           //host name
-                    append("3306/").                //port
-                    append("users?").          //db name
-                    append("user=root&").          //login
-                    append("password=Bcv8wsr");       //password
-
-            System.out.println("URL: " + url + "\n");
-
-            return DriverManager.getConnection(url.toString());
+            return DriverManager.getConnection(
+                    PropertyReader.getProperties("config.properties").getProperty("DB.URL")
+            );
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             throw new IllegalStateException();

@@ -1,6 +1,7 @@
 package servlet.admin;
 
 import service.UserService;
+import service.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,14 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
- @WebServlet("/admin/user")
+@WebServlet("/admin/user")
 public class AdminUpOrDelUserServlet extends HttpServlet {
+
+    private UserService userService;
+
+    @Override
+    public void init() throws ServletException {
+        userService = new UserServiceImpl();
+
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         boolean result = false;
         try {
-            result = UserService.INSTANCE.updateUser(
+            result = userService.updateUser(
                     Long.parseLong(req.getParameter("id")),
                     req.getParameter("name"),
                     req.getParameter("pass"),
@@ -36,7 +45,7 @@ public class AdminUpOrDelUserServlet extends HttpServlet {
         boolean result = false;
 
         try {
-            result = UserService.INSTANCE.delUser(Long.parseLong(req.getParameter("id")));
+            result = userService.delUser(Long.parseLong(req.getParameter("id")));
         } catch (NumberFormatException ignored) {
 
         }

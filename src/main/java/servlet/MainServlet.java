@@ -1,6 +1,6 @@
 package servlet;
 
-import service.UserService;
+import service.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +12,10 @@ import java.io.IOException;
 @WebServlet("/")
 public class MainServlet extends HttpServlet {
 
+
     @Override
     public void init() throws ServletException {
-        UserService.INSTANCE.createDefaultAdmin();
+        new UserServiceImpl().createDefaultAdmin();
     }
 
     @Override

@@ -18,10 +18,10 @@ public class UserAuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpSession session = ((HttpServletRequest) servletRequest).getSession(false);
-        if (session == null || session.getAttribute("user") == null){
-            servletRequest.getServletContext().getRequestDispatcher("/").forward(servletRequest,servletResponse);
+        if (session == null || session.getAttribute("user") == null) {
+            servletRequest.getServletContext().getRequestDispatcher("/").forward(servletRequest, servletResponse);
         }
-        filterChain.doFilter(servletRequest,servletResponse);
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

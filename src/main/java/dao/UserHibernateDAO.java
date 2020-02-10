@@ -41,7 +41,7 @@ public class UserHibernateDAO implements UserDao {
     public boolean delUser(User user) {
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
-        user = session.get(User.class,user.getId());
+        user = session.get(User.class, user.getId());
         session.delete(user);
         transaction.commit();
         session.close();
@@ -73,8 +73,8 @@ public class UserHibernateDAO implements UserDao {
                 "from User where  name=:name and pass=:pass"
         );
 
-        query.setParameter("name",name);
-        query.setParameter("pass",pass);
+        query.setParameter("name", name);
+        query.setParameter("pass", pass);
 
 
         User user = (User) query.getSingleResult();
@@ -85,7 +85,7 @@ public class UserHibernateDAO implements UserDao {
     @Override
     public User getUser(Long id) {
         Session session = getSession();
-        User user = session.get(User.class,id);
+        User user = session.get(User.class, id);
         session.close();
         return user;
     }
