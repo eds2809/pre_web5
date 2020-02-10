@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: eds2809
@@ -12,6 +14,30 @@
     <title>User profile</title>
 </head>
 <body>
-<label>Вы успешно авторизовались как </label><label><c:out value="${sessionScope.role}"/></label><br>
+<label>Вы успешно авторизовались</label><br><br><br><br>
+
+<label>Имя: </label><label><c:out value="${sessionScope.user.name}"/></label><br>
+<label>Возраст: </label><label><c:out value="${sessionScope.user.age}"/></label><br>
+<label>Роль: </label><label><c:out value="${sessionScope.user.role}"/></label><br>
+<br>
+<br>
+<br>
+
+<label>ID сессии: </label><label><c:out value="${pageContext.session.id}"/></label><br>
+
+
+<c:if test="${fn:containsIgnoreCase(sessionScope.user.role, 'admin')}">
+    <br>
+    <form>
+        <input type="button" value="aдмин панель" onClick='location.href="${pageContext.request.contextPath}/admin/home"'>
+    </form>
+
+</c:if>
+
+<form method="POST" action="${pageContext.request.contextPath}/exit/">
+    <button type="submit">выйти</button>
+</form>
+
+
 </body>
 </html>

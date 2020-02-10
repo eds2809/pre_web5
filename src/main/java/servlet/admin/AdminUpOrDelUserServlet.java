@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
- @WebServlet("/admin/user/")
+ @WebServlet("/admin/user")
 public class AdminUpOrDelUserServlet extends HttpServlet {
 
     @Override
@@ -20,14 +20,15 @@ public class AdminUpOrDelUserServlet extends HttpServlet {
                     Long.parseLong(req.getParameter("id")),
                     req.getParameter("name"),
                     req.getParameter("pass"),
-                    Long.parseLong(req.getParameter("age"))
+                    Long.parseLong(req.getParameter("age")),
+                    req.getParameter("role")
             );
         } catch (Exception ignored) {
 
         }
 
         resp.setStatus(result ? HttpServletResponse.SC_OK : HttpServletResponse.SC_BAD_REQUEST);
-        resp.sendRedirect("/web5/admin");
+        resp.sendRedirect(req.getContextPath() + "/admin/home");
     }
 
     @Override
@@ -41,6 +42,6 @@ public class AdminUpOrDelUserServlet extends HttpServlet {
         }
 
         resp.setStatus(result ? HttpServletResponse.SC_OK : HttpServletResponse.SC_BAD_REQUEST);
-        resp.sendRedirect("/web5/admin");
+        resp.sendRedirect(req.getContextPath() + "/admin/home");
     }
 }

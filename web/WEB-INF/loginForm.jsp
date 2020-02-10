@@ -10,7 +10,7 @@
 <head>
 </head>
 <body>
-    <form method="post" action="/web5/">
+    <form method="post" action="${pageContext.request.contextPath}/auth">
         <label>Имя</label><br><input type="text" name="name"id="name"><br>
         <label>Пароль</label><br><input type="text" name="pass"id="pass"><br>
         <button type="submit">login</button>

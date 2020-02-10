@@ -65,6 +65,14 @@ public class User {
         this.role = role;
     }
 
+    public User(long id, String name, String pass, Long age, String role) {
+        this.id = id;
+        this.name = name;
+        this.pass = pass;
+        this.age = age;
+        this.role = role;
+    }
+
     public String getRole() {
         return role;
     }
@@ -120,6 +128,13 @@ public class User {
     }
 
     public boolean validate() {
-        return name != null && !name.isEmpty() && id > 0 && pass != null && !pass.isEmpty() && age > 0;
+        return name != null &&
+                pass != null &&
+                role != null &&
+                !name.isEmpty()
+                && id > 0 &&
+                !pass.isEmpty() &&
+                age > 0 &&
+                (role.equalsIgnoreCase("admin") || role.equalsIgnoreCase("user"));
     }
 }

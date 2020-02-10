@@ -31,6 +31,7 @@ public class UserService {
                 !name.isEmpty() &&
                 !pass.isEmpty() &&
                 age > 0 &&
+                (role.equals("admin") || role.equals("user")) &&
                 userDao.addUser(
                         new User(name, pass, age,role)
                 );
@@ -40,16 +41,16 @@ public class UserService {
         return addUser(name,pass,age,"user");
     }
 
-    public boolean updateUser(long id, String name, String pass, Long age) {
-        User user = new User(id, name, pass, age);
+    public boolean updateUser(long id, String name, String pass, Long age, String role) {
+        User user = new User(id, name, pass, age,role);
         return user.validate() && userDao.update(user);
     }
 
-    public String getUserRole(String name, String pass){
+    public User getUser(String name, String pass){
         return name != null &&
                 pass != null &&
                 !name.isEmpty() &&
                 !pass.isEmpty() ?
-                userDao.getUser(name, pass).getRole() : null;
+                userDao.getUser(name, pass) : new User("","",1L,"");
     }
 }

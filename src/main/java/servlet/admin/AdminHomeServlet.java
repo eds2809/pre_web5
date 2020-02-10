@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/admin")
-public class AdminServlet extends HttpServlet {
+@WebServlet("/admin/home")
+public class AdminHomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setAttribute("users", UserService.instance.getAllUsers());
-        getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/adminHome.jsp").forward(req, resp);
         resp.setStatus(HttpServletResponse.SC_OK);
     }
 
@@ -28,13 +28,13 @@ public class AdminServlet extends HttpServlet {
                     req.getParameter("name"),
                     req.getParameter("pass"),
                     Long.parseLong(req.getParameter("age")),
-                    req.getParameter("roles")
+                    req.getParameter("role")
             );
         } catch (Exception ignored) {
 
         }
 
         resp.setStatus(result ? HttpServletResponse.SC_OK : HttpServletResponse.SC_BAD_REQUEST);
-        resp.sendRedirect("/web5/admin");
+        resp.sendRedirect(req.getContextPath()+"/admin/home");
     }
 }

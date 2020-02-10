@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebFilter("/home/user")
+@WebFilter("/home/user/")
 public class AuthUserHomeFilter implements Filter {
 
     @Override
@@ -18,7 +18,7 @@ public class AuthUserHomeFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpSession session = ((HttpServletRequest) servletRequest).getSession(false);
-        if (session == null || session.getAttribute("role") == null){
+        if (session == null || session.getAttribute("user") == null){
             servletRequest.getServletContext().getRequestDispatcher("/").forward(servletRequest,servletResponse);
         }
         filterChain.doFilter(servletRequest,servletResponse);
