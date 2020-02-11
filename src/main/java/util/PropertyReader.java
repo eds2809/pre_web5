@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyReader {
+
     public static Properties getProperties(String filePropertiesname) {
         Properties properties = null;
         try (InputStream input = PropertyReader.class.getClassLoader().getResourceAsStream(filePropertiesname)) {

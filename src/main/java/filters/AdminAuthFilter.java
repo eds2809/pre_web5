@@ -24,8 +24,8 @@ public class AdminAuthFilter implements Filter {
                 session.getAttribute("user") != null &&
                 !(((User) session.getAttribute("user")).getRole().equalsIgnoreCase("admin"))) {
 
-            ((HttpServletResponse)servletResponse).sendRedirect(((HttpServletRequest) servletRequest).getContextPath());
-        } else{
+            ((HttpServletResponse) servletResponse).sendRedirect(((HttpServletRequest) servletRequest).getContextPath());
+        } else {
             filterChain.doFilter(servletRequest, servletResponse);
 
         }
