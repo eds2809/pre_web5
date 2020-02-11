@@ -20,8 +20,9 @@ public class UserAuthFilter implements Filter {
         HttpSession session = ((HttpServletRequest) servletRequest).getSession(false);
         if (session == null || session.getAttribute("user") == null) {
             servletRequest.getServletContext().getRequestDispatcher("/").forward(servletRequest, servletResponse);
+        } else {
+            filterChain.doFilter(servletRequest, servletResponse);
         }
-        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

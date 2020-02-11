@@ -21,9 +21,9 @@ public class AuthFilter implements Filter {
             servletRequest.getServletContext()
                     .getRequestDispatcher("/user/home")
                     .forward(servletRequest, servletResponse);
-            return;
+        } else {
+            filterChain.doFilter(servletRequest, servletResponse);
         }
-        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

@@ -64,6 +64,7 @@ public class UserServiceImpl implements UserService {
     public void createDefaultAdmin() {
         if (userDao.getUser(1L) == null) {
             addUser("Dima", "12345", 24L, "admin");
+            addUser("Den", "1", 24L, "user");
         }
     }
 
