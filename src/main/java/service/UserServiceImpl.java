@@ -12,9 +12,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     public UserServiceImpl() {
-        userDao = UserDaoFactory.getUserDao(
-                PropertyReader.getProperties("config.properties").getProperty("jpaType")
-        );
+        userDao = UserDaoFactory.getUserDao();
     }
 
     @Override
