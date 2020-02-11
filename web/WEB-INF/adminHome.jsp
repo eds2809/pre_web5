@@ -75,9 +75,7 @@
                     </td>
 
                     <td>
-                        <form>
-                            <input type="button" value="update" onClick='location.href="${pageContext.request.contextPath}/admin/update/"+${user.id}'>
-                        </form>
+                        <input type="button" value="update" onClick='location.href="${pageContext.request.contextPath}/admin/update/"+${user.id}'>
                     </td>
 
                     </form>
